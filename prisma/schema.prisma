@@ -11,25 +11,40 @@ datasource db {
 }
 
 model Category {
-  id          Int      @id @default(autoincrement())
-  name        String 
-  image       String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @default(now())
-  itemId      Int
-  item        Item     @relation(fields: [itemId], references: [id])
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  itemId    Int
+  item      Item     @relation(fields: [itemId], references: [id])
+  image    Image[]
+
+}
+
+model Image {
+  id        Int      @id @default(autoincrement())
+  name      String
+  image     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  itemId    Int
+  item      Item     @relation(fields: [itemId], references: [id])
+  categoryId Int
+  category  Category @relation(fields: [categoryId], references: [id])
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
 }
 
 model Item {
-  id          Int       @id @default(autoincrement())
+  id          Int        @id @default(autoincrement())
   name        String
-  image       String
   itemSaleTag String
   itemType    String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @default(now())
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @default(now())
   listings    Listing[]
   category    Category[]
+  image       Image[]
 }
 
 model Listing {
@@ -41,4 +56,43 @@ model Listing {
   updatedAt   DateTime @default(now())
   itemId      Int
   item        Item     @relation(fields: [itemId], references: [id])
+}
+
+model User {
+  id              Int      @id @default(autoincrement())
+  firstName       String
+  lastName        String
+  email           String
+  password        String
+  dateOfBirth     DateTime
+  physicalAddress String
+  country         String
+  city            String
+  postalCode        String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @default(now())
+  image           Image[]
+  merchant        Merchant[]
+
+}
+
+model Merchant {
+  id            Int      @id @default(autoincrement())
+  shopName      String?
+  walletAddress String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @default(now())
+  currency      Currency[]
+  userId        Int
+  user          User     @relation(fields: [userId], references: [id])
+}
+
+model Currency {
+  id          Int      @id @default(autoincrement())
+  name        String
+  symbol      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  merchantId  Int
+  merchant    Merchant @relation(fields: [merchantId], references: [id])
 }

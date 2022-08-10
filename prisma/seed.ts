@@ -10,7 +10,13 @@ async function main() {
   const item = await prisma.item.create({
     data: {
       name: "Adidas",
-      image: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+      image: {
+        create: {
+          name : "adidas shoes",
+          image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+        
+        }
+      },
       itemSaleTag: "Daily Deals",
       itemType: "product",
       listings: {
@@ -23,16 +29,29 @@ async function main() {
   category: {
     create: {
       name: "Shoes",
-      image: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+      image: {
+        create: {
+          name : "shoes",
+          image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+        }
+      }
+        
+      }
     }
-  } 
+   
     }
+  
   })
 
   const item2 = await prisma.item.create({
     data: {
       name: "DELL XPS 13",
-      image: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+      image: {
+        create: {
+          name : "DELL XPS 13",
+          image: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+        }
+      },
       itemSaleTag: "Popular item",
       itemType: "product",
       listings: {
@@ -45,7 +64,12 @@ async function main() {
       category: {
         create: {
           name: "Computers",
-          image: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+          image: {
+            create: {
+              name : "computers",
+              image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+            }
+          }
         }
       }
     }
@@ -54,7 +78,12 @@ async function main() {
   const item3 = await prisma.item.create({
     data: {
       name: "Apartment",
-      image: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+      image: {
+        create: {
+          name : "Apartment",
+          image: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+        }
+      },
       itemSaleTag: "Popular item",
       itemType: "property",
       listings: {
@@ -67,7 +96,12 @@ async function main() {
       category: {
         create: {
           name: "Property",
-          image: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+          image: {
+            create: {
+              name : "property",
+              image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+            }
+          }
         }
       }   
     }
@@ -76,7 +110,12 @@ async function main() {
   const item4 = await prisma.item.create({
     data: {
       name: "Medical Services",
-      image: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+      image: {
+        create: {
+          name : "Medical Services",
+          image: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+        }
+      },
       itemSaleTag: "Daily Deals",
       itemType: "service",
       listings: {
@@ -89,14 +128,49 @@ async function main() {
       category: {
         create: {
           name: "Services",
-          image: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+          image: {
+            create: {
+              name : "services",
+              image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+            }
+          }
         }
       }
     }
   })
-}
-  
 
+  const user = await prisma.user.create({
+    data: {
+      firstName: "John",
+      lastName: "Doe",
+      email : "john@gmail.com",
+      password: "password",
+      dateOfBirth: "01/01/1990",
+      physicalAddress: "123 Fake Street, Fake City, Fake State, Fake Country",
+      country : "Uganda",
+      city : "Kampala",
+      postalCode : "12345",
+      Image: {
+        create: {
+          name: "John Doe Image",
+          image: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+      }
+    },
+      merchant: {
+        create: {
+          shopName: "John's Shop",
+          walletAddress: "0x1234567890123456789012345678901234567890",
+          currency:{
+            create: {
+              name: ["Bitcoin", "Ethereum", "USD Tether"],
+              symbol: ["BTC", "ETH", "USDT"],
+          }
+        }
+      }
+    }     
+  }
+})
+}
   // execute the main function
 main()
 .catch((e) => {
