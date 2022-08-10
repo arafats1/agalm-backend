@@ -6,4 +6,6 @@ export class CreateItemDto {
     image: string;
     @ApiProperty()
     itemSaleTag: string;
+    @ApiProperty()
+    itemType: string;
 }

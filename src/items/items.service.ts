@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateItemDto } from './dto/create-item.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { find } from 'rxjs';
 
 @Injectable()
 export class ItemsService {
@@ -24,7 +25,25 @@ export class ItemsService {
   findDailyDeals() {
     return this.prisma.item.findMany({where: {itemSaleTag: "Daily Deals"}})
   }
+  findProducts() {
+    return this.prisma.item.findMany({where: {itemType: "product"}})
+  }
+  findProduct(id: number) {
+    return this.prisma.item.findUnique({where: {id: id}})
+  }
 
+  findProperty() {
+    return this.prisma.item.findMany({where: {itemType: "property"}})
+  }
+  findPropertyById(id: number) {
+    return this.prisma.item.findUnique({where: {id: id}})
+  }
+  findService() {
+    return this.prisma.item.findMany({where: {itemType: "service"}})
+  }
+  findServiceById(id: number) {
+    return this.prisma.item.findUnique({where: {id: id}})
+  }
   findOne(id: number) {
     // return `This action returns a #${id} item`;
     return this.prisma.item.findUnique({ where: { id } });

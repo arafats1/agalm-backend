@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ItemsService } from './items.service';
 import { CreateItemDto } from './dto/create-item.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
+import { constants } from 'http2';
 
 @Controller('items')
 export class ItemsController {
@@ -16,13 +17,39 @@ export class ItemsController {
   findAll() {
     return this.itemsService.findAll();
   }
-  @Get('popular-items')
+  @Get('popular')
   findPopularItems() {
     return this.itemsService.findPopularItems();
   }
   @Get('daily-deals')
   findDailyDeals() {
     return this.itemsService.findDailyDeals();
+  }
+  @Get('products')
+  findProducts() {
+    return this.itemsService.findProducts();
+  }
+  @Get('products/:id')
+  findProduct(@Param('id') id: string) {
+    return this.itemsService.findProduct(+id);
+  }
+
+  @Get('property')
+  findProperty() {
+    return this.itemsService.findProperty();
+  }
+  @Get('property/:id')
+  findPropertyById(@Param('id') id: string) {
+    return this.itemsService.findPropertyById(+id);
+  }
+
+  @Get('services')
+  findService() {
+    return this.itemsService.findService();
+  }
+  @Get('services/:id')
+  findServiceById(@Param('id') id: string) {
+    return this.itemsService.findServiceById(+id);
   }
 
   @Get(':id')
@@ -40,3 +67,4 @@ export class ItemsController {
     return this.itemsService.remove(+id);
   }
 }
+

@@ -14,9 +14,10 @@ model Category {
   id          Int      @id @default(autoincrement())
   name        String 
   image       String
-  description String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @default(now())
+  itemId      Int
+  item        Item     @relation(fields: [itemId], references: [id])
 }
 
 model Item {
@@ -24,9 +25,11 @@ model Item {
   name        String
   image       String
   itemSaleTag String
+  itemType    String
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @default(now())
   listings    Listing[]
+  category    Category[]
 }
 
 model Listing {
