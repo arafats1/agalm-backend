@@ -12,7 +12,8 @@ export class ImagesService {
   }
 
   findAll() {
-    return `This action returns all images`;
+    // return `This action returns all images`;
+    return this.prisma.image.findMany();
   }
 
   findOne(id: number) {

@@ -8,6 +8,7 @@ export class CreateCategoryDto {
     // image: string;
     @ApiProperty()
     itemId: number;
+    
 
 
 }

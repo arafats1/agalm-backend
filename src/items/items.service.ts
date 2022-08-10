@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { CreateItemDto } from './dto/create-item.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { find } from 'rxjs';
 
 @Injectable()
 export class ItemsService {
