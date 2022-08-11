@@ -174,8 +174,8 @@ async function main() {
           walletAddress: "0x1234567890123456789012345678901234567890",
           currency:{
             create: {
-              name: ["Bitcoin", "Ethereum", "USD Tether"],
-              symbol: ["BTC", "ETH", "USDT"],
+              name: "Bitcoin",
+              symbol: "BTC",
           }
         }
       }
@@ -205,8 +205,8 @@ async function main() {
           walletAddress: "0x1234567890123456789012345678901234567890",
           currency:{
             create: {
-              name: ["Bitcoin", "Ethereum","Binance Coin"],
-              symbol: ["BTC", "ETH", "BNB"],
+              name: "Bitcoin",
+              symbol: "BTC",
             }
           }
         }

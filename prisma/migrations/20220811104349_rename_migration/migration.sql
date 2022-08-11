@@ -12,7 +12,6 @@ CREATE TABLE "Category" (
 -- CreateTable
 CREATE TABLE "Image" (
     "id" SERIAL NOT NULL,
-    "name" TEXT NOT NULL,
     "image" TEXT[],
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -55,7 +54,7 @@ CREATE TABLE "User" (
     "lastName" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "dateOfBirth" TIMESTAMP(3) NOT NULL,
+    "dateOfBirth" TEXT NOT NULL,
     "physicalAddress" TEXT NOT NULL,
     "country" TEXT NOT NULL,
     "city" TEXT NOT NULL,
@@ -81,8 +80,8 @@ CREATE TABLE "Merchant" (
 -- CreateTable
 CREATE TABLE "Currency" (
     "id" SERIAL NOT NULL,
-    "name" TEXT[],
-    "symbol" TEXT[],
+    "name" TEXT NOT NULL,
+    "symbol" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "merchantId" INTEGER NOT NULL,
